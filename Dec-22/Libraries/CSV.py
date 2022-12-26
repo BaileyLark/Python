@@ -8,7 +8,6 @@ with open('vgsales.csv', 'r') as file: #read the file
     reader = csv.DictReader(file, fieldnames=fieldnames) # reader is an iterator
     # can also use csv.reader(file)   
     next(file) # skips the first index
-
     i = 0
     for line in file:    
         if i < 1:  
