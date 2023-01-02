@@ -1,5 +1,9 @@
 import numpy as np 
-np.random.seed(0)
+import nnfs
+from nnfs.datasets import spiral_data
+
+
+nnfs.init()
 
 # shape 
 '''
@@ -50,6 +54,8 @@ X = [[1, 2, 3, 2.5],
      [2.0, 5.0, -1.0, 2.0],
      [-1.5, 2.7, 3.3, -0.8]] # iNputs from 4 previous neuron
 
+X, y = spiral_data(100, 3)
+
 class Layer_Dense:
      def __init__(self, n_inputs , n_neurons): # the shape of the matrix 
           self.weights = 0.10 * np.random.randn(n_inputs, n_neurons)
@@ -57,12 +63,15 @@ class Layer_Dense:
      def forward(self, inputs):
           self.output = np.dot(inputs, self.weights) + self.biases
 
+class Activation_ReLU: # if the input is negative, set it to 0. 
+     def forward(self, inputs):
+          self.output = np.maximum(0, input)
 
-layer1 = Layer_Dense(4, 5) # second param must be the size of th efirst
-layer2 = Layer_Dense(5, 2)
 
-layer1.forward(X)
-layer2.forward(layer1.output)
-print(layer2.output)
+#each layer is a neuron
+layer1 = Layer_Dense(2, 5) # second param must be the size of th efirst
+activation1 = Activation_ReLU()
+layer1.forward(X) # first neuron takes the input
+activation1.forward(layer1.output)
 
-# 
+print(activation1.output)
