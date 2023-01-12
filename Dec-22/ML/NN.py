@@ -58,6 +58,16 @@ print(output)
 # Rectified Linear function, only if x > 0 will it output x
 # Soft Max Activation function is Exponential + Normalization
 
+# CATEGORICAL CROSS ENTROPY
+# Classes : 3 (size of One-Hot)
+# Label : 2 (position of 1 in One-hot)
+# One-Hot: [0,0,1] 
+# Prediction (neural network output) [0.7, 0.1, 0.2]
+# -(1 * log(0.7) + 0 * log(0.1) + 0 * log(0.2)) = 0.356
+
+# LOG ALGORITHM (e^x = b)
+# e(eulers number)^x = b
+
 # inputs = x 
 
 # MULTIPLE LAYERS OF NEURONS + RLF ACTIVATION FUNCTION 
@@ -79,6 +89,20 @@ class Activation_Softmax:
           exp_values = np.exp(inputs, - np.max(inputs, axis=1, keepdims=True))
           probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
           self.output = probabilities
+
+class Loss:
+     def calculate(self, output, y):
+          sample_losses = self.forward(output, y)
+          data_loss = np.mean(sample_losses)
+          return data_loss
+
+class Loss_CetgoricalCrossEntropy(Loss):
+     def forward(self, y_pred, y_true):
+          samples = len(y_pred)
+          y_pred_clipped = np.clip(y_pred, 1e-7, 1-1e-7) 
+
+          if len(y_true.shape) == 1:
+               correct_confidence = y_pred_clipped[range(samples), y_true]
 
 X,y = spiral_data(samples=100, classes=3)
 
@@ -115,3 +139,10 @@ exp_values = np.exp(layer_outputs) # (E ^ each value), axis=1 add each rows, kee
 norm_values = exp_values / np.sum(exp_values, axis=1, keepdims=True) # takes each expontential value and divides it by total 
 
 print(norm_values)'''
+
+# ENTROPY 
+
+softmax_output = [0.7, 0.1, 0.2]
+target_output = [1, 0, 0]
+loss = -(math.log(softmax_output[0]))
+print(loss)
