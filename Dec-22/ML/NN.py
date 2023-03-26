@@ -62,8 +62,12 @@ print(output)
 # Classes : 3 (size of One-Hot)
 # Label : 2 (position of 1 in One-hot)
 # One-Hot: [0,0,1] 
-# Prediction (neural network output) [0.7, 0.1, 0.2]
+# Prediction / Confidence (neural network output) [0.7, 0.1, 0.2] 
 # -(1 * log(0.7) + 0 * log(0.1) + 0 * log(0.2)) = 0.356
+# Where the confidence is higher the loss is lower 
+
+# MEAN ABSOLUTE LOSS 
+# Difference between target values
 
 # LOG ALGORITHM (e^x = b)
 # e(eulers number)^x = b
