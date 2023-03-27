@@ -1,7 +1,4 @@
 # Calculates the Solar Radius when given KM
-from re import A
-from struct import pack_into
-
 
 def solarRad(sRad, isKM=True): 
     if(isKM):

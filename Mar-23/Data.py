@@ -5,13 +5,6 @@
 # solar radius UP
 # R,G,B
 # probability
-
-# Calculates the Solar Radius when given KM
-def solarRad(sRad, isKM=True): 
-    if(isKM):
-        return sRad*695700
-    return ((sRad*695700) * 0.621)
-
 Hardvard_spectral_bounds = [
     [79, 30000, 200000, 6.6, 2150, 104, 160, 232, 0.01], # O
     [42, 30000, 10000, 1.8, 6.6, 140, 180, 230, 0.13], # B
@@ -33,3 +26,26 @@ Hertz_class_bounds = [
     [-5, 0, 5, 30], #giants 
     [-11, -6, 8, 30], #hyper giants
 ]
+
+# radius LB 
+# radius UB
+# 
+
+Object_Types = [
+    ["Terrestrial", 2439, 38226, 0], 
+    ["Gas Giant", 10842, 174777, 0],
+    ["Natural Satalite", 400, 2439, 0],
+]
+
+'''Objecs_Types = [
+    ["White Dwarf"],
+    ["Main Sequence"],
+    ["Gaints"],
+    ["Hyper Giants"],
+    ["Black Hole"],
+    ["Neutron Star"],
+    ["Quasar"],
+    ["Terrestrial"], 
+    ["Natural Satalite"], 
+    ["Gas Giant"],
+]'''
