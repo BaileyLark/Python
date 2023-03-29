@@ -9,7 +9,8 @@ import random
 
 if __name__ == "__main__":
     p001 = c.CelestialBody("Earth", 152097597, 147098450)
-    p001.addOrbitingBody(c.CelestialBody("Moon", 405550, 226000))
-    p001.addOrbitingBody(c.CelestialBody("Minmas", 450342, 340342))
-    print(p001)
-    print(p001.Moons[0])
+    p001.addOrbitingBody(c.CelestialBody("Moon", 405550, 226000, 1, 1, 1))
+    print("\n" + p001.description())
+    print(p001.Moons[0].description())
+    print(p001.Moons[0].OrbitingBody.Name)
+    
