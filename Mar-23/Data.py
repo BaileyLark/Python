@@ -27,14 +27,19 @@ Hertz_class_bounds = [
     [-11, -6, 8, 30], #hyper giants
 ]
 
+# Celestial (km) Collective (ly)
 # radius LB 
 # radius UB
-# 
+# n/a
 
 Object_Types = [
     ["Terrestrial", 2439, 38226, 0], 
     ["Gas Giant", 10842, 174777, 0],
     ["Natural Satalite", 400, 2439, 0],
+    ["Spiral Galaxy", 100000, 500000, 0]
+    ["Elliptical Galaxy", 500, 25000, 0]
+    ["Barred Galaxy", 75000, 150000]
+    ["Irregular Galaxy", 25000, 75000]
 ]
 
 '''Objecs_Types = [
@@ -48,4 +53,6 @@ Object_Types = [
     ["Terrestrial"], 
     ["Natural Satalite"], 
     ["Gas Giant"],
+    ["Galaxy", 200, 500000, 0]
 ]'''
+

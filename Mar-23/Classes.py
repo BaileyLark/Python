@@ -1,19 +1,33 @@
-from msilib.schema import Class
 import DataFunctions as df
 import Data as data
 import random 
+
+class ObjectList: # All objects in the Universe 
+    ...
+class PlayerInfo: 
+    ...
 
 class GalaxyContainer:
     Systems = []
 
 class SystemContainer:
-    CelestialBody = []
+    def __init__(self, Name:str, Radius=1, Randbodies=0, Object_type=5):
+        CelestialBodies = []
+        self.Object_type = data.Object_Types[3]
+        if (Randbodies>0):
+            for i in range(Randbodies):
+                self.Add_RandCeleBody()
+
+    def Add_CeleBody(self, CelestialClass):
+        self.CelestialBodies.append(CelestialClass)
+        CelestialClass.System = self
+    
+    def Add_RandCeleBody():
+        ...
 
 class CelestialBody():
 
-    item_id = 0
-
-    def __init__(self, Name:str, Aphelion: int, Perihelion: int, Radius=1, invariablePlane=1, Object_type=0, obitingBody=None):
+    def __init__(self, Name:str, Aphelion: int, Perihelion: int, Radius=1, invariablePlane=1, Object_type=0, orbitingBody=None):
 
         #IDENTIFICATION
         self.Name = Name # Needs specific function to generate name
@@ -23,7 +37,7 @@ class CelestialBody():
         self.Aphelion = Aphelion
         self.Perihelion = Perihelion
         self.Eccentricity = df.calcEccentricity(self.Aphelion, self.Perihelion)  
-        self.OrbitingBody = obitingBody
+        self.OrbitingBody = orbitingBody
         self.invariablePlane = invariablePlane 
         if (self.invariablePlane):
             self.invariablePlane = round(random.uniform(0,10), 7) # Needs gaussian distribution
@@ -33,8 +47,9 @@ class CelestialBody():
         if (Radius):
             self.Radius = round(random.uniform(data.Object_Types[Object_type][1], data.Object_Types[Object_type][2]))
 
-        #ORBITING BODIES
+        #ORBITING BODIES / REFERENCE
         self.Moons = [] 
+        self.System = None
     
     def addOrbitingBody(self, MoonClass):
         self.Moons.append(MoonClass)
@@ -48,12 +63,23 @@ class CelestialBody():
         if (self.Moons[index]):
             self.Moons.pop(index)
 
-    def description(self):
-        return f"{self.Name} ({self.Object_type}) \
-        \nAphelion: {self.Aphelion:,}km \
-        \nPerihelion: {self.Perihelion:,}km \nEccentricity {self.Eccentricity:,} \
-        \ninvariablePlane: {self.invariablePlane} \
-        \nRadius: {self.Radius}km \
-        \nMoons: {len(self.Moons)} \
-        \nParent: {self.OrbitingBody}\n"
+    def description(self): # Testing purposes
+        text = ""
+        text = f"{self.Name} ({self.Object_type})\n"
+        if (not(self.Object_type == "Natural Satalite")):
+            text += f"Aphelion: {self.Aphelion:,}km \nPerihelion: {self.Perihelion:,}km \nEccentricity {self.Eccentricity:,}\n"
+        else:
+            text += f"Apogee: {self.Aphelion:,}km ({self.Aphelion - self.OrbitingBody.Aphelion:,}km) \
+            \nPerigee: {self.Perihelion:,}km ({self.OrbitingBody.Perihelion - self.Perihelion:,}km) \
+            \nEccentricity {self.Eccentricity:,}\n"
+        text += f"invariablePlane: {self.invariablePlane}\n"
+        text += f"Radius: {self.Radius}km\n" 
+        text += f"Moons: {len(self.Moons)}\n" 
+        text += f"Parent: {self.OrbitingBody}\n"
+    
+        return text
+
+
+
+        
 
