@@ -2,37 +2,35 @@ import DataFunctions as df
 import Data as data
 import random 
 
-class ObjectList: # All objects in the Universe 
-    ...
+
+Universe = []
+
 class PlayerInfo: 
-    ...
+    Frakts = 100 
+
+class Item():
+    def __init__(self, name:str, stack:int, desc:str):
+        self.Name = name 
+        self.Stack = stack
+        self.Description = desc
 
 class GalaxyContainer:
     Systems = []
 
 class SystemContainer:
     def __init__(self, Name:str, Radius=1, Randbodies=0, Object_type=5):
-        CelestialBodies = []
-        self.Object_type = data.Object_Types[3]
-        if (Randbodies>0):
-            for i in range(Randbodies):
-                self.Add_RandCeleBody()
-
-    def Add_CeleBody(self, CelestialClass):
-        self.CelestialBodies.append(CelestialClass)
-        CelestialClass.System = self
-    
-    def Add_RandCeleBody():
-        ...
+        Universe.append(self)
+        self.CelestialBodies = []
 
 class CelestialBody():
-
     def __init__(self, Name:str, Aphelion: int, Perihelion: int, Radius=1, invariablePlane=1, Object_type=0, orbitingBody=None):
+
+        Universe.append(self)
 
         #IDENTIFICATION
         self.Name = Name # Needs specific function to generate name
         self.Object_type = data.Object_Types[Object_type][0]
-
+        
         #ORBITAL
         self.Aphelion = Aphelion
         self.Perihelion = Perihelion
@@ -48,22 +46,18 @@ class CelestialBody():
             self.Radius = round(random.uniform(data.Object_Types[Object_type][1], data.Object_Types[Object_type][2]))
 
         #ORBITING BODIES / REFERENCE
-        self.Moons = [] 
         self.System = None
-    
-    def addOrbitingBody(self, MoonClass):
-        self.Moons.append(MoonClass)
-        MoonClass.Object_type = data.Object_Types[2][0]
-        MoonClass.Radius = round(random.uniform(500, self.Radius * 0.7))
-        MoonClass.Aphelion = self.Aphelion + MoonClass.Aphelion
-        MoonClass.Perihelion = self.Perihelion - MoonClass.Perihelion
-        MoonClass.OrbitingBody = self
+        self.Moons = []
 
-    def remOrbitingBody(self, index):
-        if (self.Moons[index]):
-            self.Moons.pop(index)
+    def Rand_Add_Object(self, object):
+        self.Moons.append(object)
+        object.Object_type = data.Object_Types[2][0]
+        object.Radius = round(random.uniform(500, self.Radius * 0.7))
+        object.Aphelion = self.Aphelion + object.Aphelion
+        object.Perihelion = self.Perihelion - object.Perihelion
+        object.OrbitingBody = self
 
-    def description(self): # Testing purposes
+    def desc(self): # Testing purposes
         text = ""
         text = f"{self.Name} ({self.Object_type})\n"
         if (not(self.Object_type == "Natural Satalite")):
@@ -76,8 +70,8 @@ class CelestialBody():
         text += f"Radius: {self.Radius}km\n" 
         text += f"Moons: {len(self.Moons)}\n" 
         text += f"Parent: {self.OrbitingBody}\n"
-    
         return text
+
 
 
 

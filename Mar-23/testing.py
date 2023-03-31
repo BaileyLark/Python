@@ -1,18 +1,15 @@
-class Object():
 
-    def __init__(self, Name):
-        self.name = Name
-        self.classInstances = []
-    
-    def appendClass(self, objectInstance):
-        self.classInstances.append(objectInstance)
-    
-    def printName(self):
-        print(self.name)
+
+class Child():
+    def __init__(self):
+        self.objects = []
+    def add_item(self, i):
+        self.objects.append(i)
+
+class Parent(Child):
+    ...
 
 if __name__ == "__main__":
-    Parent = Object("Parent")
-    Parent.appendClass(Object("Child"))
-    Parent.classInstances[0].printName()
-
-
+    Obj1 = Parent()
+    Parent.add_item(Parent, 5)
+    print(Obj1.list[0])
