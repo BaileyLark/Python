@@ -1,18 +1,32 @@
 import DataFunctions as df
 import Data as data
 import random 
+import colorama
+from colorama import Fore, Back, Style
 
+# PLAYER INFO
 
+class PlayerInfo(): 
+    def __init__(self):
+        self.Frakts = 100 
+        self.Starship = Starship()
+
+class Starship():
+    Storage = [] 
+    Storage_Cap = 50
+
+# ITEM SHOP/EXCHANGE
+
+class Station():
+    def __init__(self, name:str):
+        self.Name = name
+        self.Storage = []
+        self.OrbitingBody = None
+
+# UNIVERSE
+
+# decide if objects should be seperate lists, speeding up sorting
 Universe = []
-
-class PlayerInfo: 
-    Frakts = 100 
-
-class Item():
-    def __init__(self, name:str, stack:int, desc:str):
-        self.Name = name 
-        self.Stack = stack
-        self.Description = desc
 
 class GalaxyContainer:
     Systems = []
@@ -48,8 +62,9 @@ class CelestialBody():
         #ORBITING BODIES / REFERENCE
         self.System = None
         self.Moons = []
+        self.Station = None
 
-    def Rand_Add_Object(self, object):
+    def Rand_Object(self, object):
         self.Moons.append(object)
         object.Object_type = data.Object_Types[2][0]
         object.Radius = round(random.uniform(500, self.Radius * 0.7))
@@ -57,9 +72,13 @@ class CelestialBody():
         object.Perihelion = self.Perihelion - object.Perihelion
         object.OrbitingBody = self
 
+    def Add_Station(self, object):
+        self.Station = object
+        self.Station.OrbitingBody = self
+
     def desc(self): # Testing purposes
         text = ""
-        text = f"{self.Name} ({self.Object_type})\n"
+        text += f"{self.Name} ({self.Object_type})\n"
         if (not(self.Object_type == "Natural Satalite")):
             text += f"Aphelion: {self.Aphelion:,}km \nPerihelion: {self.Perihelion:,}km \nEccentricity {self.Eccentricity:,}\n"
         else:
@@ -71,9 +90,18 @@ class CelestialBody():
         text += f"Moons: {len(self.Moons)}\n" 
         text += f"Parent: {self.OrbitingBody}\n"
         return text
+    
+    # Add Fore.COLOR to each string for it to work
 
 
 
+'''
+class Item():
+    def __init__(self, name:str, stack:int, desc:str):
+        self.Name = name 
+        self.Stack = stack
+        self.Description = desc
+'''
 
         
 
