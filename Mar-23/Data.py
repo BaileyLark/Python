@@ -56,3 +56,14 @@ Object_Types = [
     ["Galaxy", 200, 500000, 0]
 ]'''
 
+#id
+#type
+#name
+#value
+#description
+
+ITEM_DATA = [
+    [1, "Neutron Cells"],
+    [2, ""],
+    [3, ""],
+]

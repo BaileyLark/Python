@@ -5,6 +5,7 @@ import Classes as c
 import colorama
 from colorama import Fore, Back, Style
 import random
+import json
 
 
 # for diameter 
@@ -12,9 +13,14 @@ import random
 
 if __name__ == "__main__":
 
-    colorama.init(autoreset=True)
-    Earth = c.CelestialBody("Earth", 152097597, 147098450, 1, 1, 0)
-    Earth.Rand_Object(c.CelestialBody("Moon", 23434938, 8979799, 1, 1, 0))
-    Earth.Add_Station(c.Station("Helios"))
+    data = json.load(open('save.json')) # imports json, then converts it into dictionary
+    print(data['current_save'][0]['name']) #
 
-    print(f"{Earth.desc()}\n",Earth.Moons[0].desc())
+    
+
+    #colorama.init(autoreset=True)
+    #Earth = c.CelestialBody("Earth", 152097597, 147098450, 1, 1, 0)
+    #Earth.Rand_Object(c.CelestialBody("Moon", 23434938, 8979799, 1, 1, 0))
+    #Earth.Add_Station(c.Station("Helios"))
+
+# Have player enter their name

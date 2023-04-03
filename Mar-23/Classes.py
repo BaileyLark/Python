@@ -8,8 +8,10 @@ from colorama import Fore, Back, Style
 
 class PlayerInfo(): 
     def __init__(self):
+        self.CommmanderName = ""
         self.Frakts = 100 
         self.Starship = Starship()
+        self.CurrentSystem = None 
 
 class Starship():
     Storage = [] 
@@ -22,6 +24,9 @@ class Station():
         self.Name = name
         self.Storage = []
         self.OrbitingBody = None
+    def __str__(self):
+        return f"{self.Name}, Orbiting: {self.OrbitingBody.Name}"
+
 
 # UNIVERSE
 
