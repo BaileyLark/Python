@@ -22,7 +22,6 @@ def button_equal():
     entry.delete(0, tk.END)
     entry.insert(0, first_num + int(second_number))
 
-
 button_1 = tk.Button(root, text="1", padx=40, pady=20, command=lambda: button_click(1))
 button_2 = tk.Button(root, text="2", padx=40, pady=20, command=lambda:button_click(2))
 button_3 = tk.Button(root, text="3", padx=40, pady=20, command=lambda:button_click(3))
