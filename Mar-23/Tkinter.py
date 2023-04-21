@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import ImageTk, Image
 from tkinter import filedialog
+import sqlite3
 
 root = tk.Tk()
 root.geometry("500x500")
@@ -43,3 +44,18 @@ clicked.set("item0")
 drop = tk.OptionMenu(root, clicked, *options).pack()
 
 root.mainloop()
+
+# databases 
+conn = sqlite3.connect('address_book.db') # creates a connection
+c = conn.cursor() # creates a cursor that does the interaction with sqlite3
+c.execute("""CREATE TABLE addresses (
+        first_name text, 
+        last_name text, 
+        address text, 
+        city text, 
+        zipcode integer
+        )""")
+
+
+conn.commit() # commits a change
+conn.close()
