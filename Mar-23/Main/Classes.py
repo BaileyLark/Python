@@ -98,8 +98,6 @@ class CelestialBody():
     
     # Add Fore.COLOR to each string for it to work
 
-
-
 '''
 class Item():
     def __init__(self, name:str, stack:int, desc:str):

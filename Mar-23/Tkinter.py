@@ -1,12 +1,19 @@
-import tkinter as tk 
-from tkinter import messagebox
-from PIL import ImageTk, Image
-from tkinter import filedialog
-import sqlite3
+from matplotlib import pyplot as plt 
 
-root = tk.Tk()
-
-my 
+days = [0, 60, 120, 180, 240, 300, 360, 420, 480, 540, 600]
+names = ['Sempiternal','TTS','amo','PHSH','PHNG']
+time = [81, 325, 157, 359, 589]
 
 
-root.mainloop()
+# also plt.plot, barh, bar
+plt.barh(names, time) # can do color=''
+
+
+plt.title('Days Between releases')
+plt.xticks()
+plt.xlabel('Days')
+plt.ylabel('Albums')
+plt.tight_layout()
+
+
+plt.show()
