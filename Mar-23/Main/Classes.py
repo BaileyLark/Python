@@ -7,11 +7,15 @@ from colorama import Fore, Back, Style
 # PLAYER INFO
 
 class PlayerInfo(): 
-    def __init__(self):
-        self.CommmanderName = ""
-        self.Frakts = 100 
+    def __init__(self, CName="Empty", RandCName=False, Frakts=100, CurrentSystem=None):
+        self.CommmanderName = CName
+        self.Frakts = Frakts 
         self.Starship = Starship()
-        self.CurrentSystem = None 
+        self.CurrentSystem = CurrentSystem 
+        if (RandCName):
+            ... # Create random name
+
+        self.Starship.Storage.append(Item("Test Item", 15, "Description", 50, 0))
 
 class Starship():
     Storage = [] 
@@ -98,13 +102,15 @@ class CelestialBody():
     
     # Add Fore.COLOR to each string for it to work
 
-'''
+# Manually create an item 
 class Item():
-    def __init__(self, name:str, stack:int, desc:str):
+    def __init__(self, name:str, stack:int, desc:str, value:int, Rarity):
         self.Name = name 
         self.Stack = stack
+        self.Value = value
         self.Description = desc
-'''
+        self.Rarity = 0
 
-        
+    def GenUniqueItem():
+        ...
 
