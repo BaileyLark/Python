@@ -1,3 +1,4 @@
+from enum import Enum
 # spectral code
 # effective tempreture LB 
 # effective tempreture UP 
@@ -62,8 +63,16 @@ Object_Types = [
 #value
 #description
 
+class Rarity(Enum):
+    COMMON = 5
+    UNCOMMON = 4
+    RARE = 3
+    SPECIAL = 2
+    UNIQUE = 1
+    UNASSIGNED = 0
+
 ITEM_DATA = [
-    [1, "Neutron Cells"],
+    [1, "Neutron Cells", 99, "Fuels the engines", "Rare", "Artificial"],
     [2, ""],
     [3, ""],
 ]
