@@ -1,2 +1,4 @@
 ﻿  Source.cpp
-  C++.vcxproj -> C:\Users\Gamer\Documents\GitHub\Learning\May-23\C++\Debug\C++.exe
+C:\Users\Gamer\Documents\GitHub\Learning\May-23\C++\C++\Classes.h(11,25): error C3646: 'cstats': unknown override specifier
+C:\Users\Gamer\Documents\GitHub\Learning\May-23\C++\C++\Classes.h(11,25): error C2059: syntax error: '='
+C:\Users\Gamer\Documents\GitHub\Learning\May-23\C++\C++\Classes.h(11,51): error C2238: unexpected token(s) preceding ';'
