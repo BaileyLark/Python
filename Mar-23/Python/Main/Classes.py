@@ -15,7 +15,7 @@ class PlayerInfo():
         if (RandCName):
             ... # Create random name
 
-        self.Starship.Storage.append(Item("Test Item", 15, "Description", 50, 0))
+        self.Starship.Storage.append(Item("Test Item", 15, "Description", 50, 0, True))
 
 class Starship():
     Storage = [] 
@@ -104,12 +104,13 @@ class CelestialBody():
 
 # Manually create an item 
 class Item():
-    def __init__(self, name:str, stack:int, desc:str, value:int, Rarity):
+    def __init__(self, name:str, stack:int, desc:str, value:int, Rarity:int, sellable:bool):
         self.Name = name 
         self.Stack = stack
         self.Value = value
         self.Description = desc
-        self.Rarity = 0
+        self.CanbeSold = sellable
+        self.Rarity = Rarity
 
     def GenUniqueItem():
         ...
