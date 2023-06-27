@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp 
 import time
 
+
 class poseDetector():
     def __init__(self, mode=False, upBody=False, model_complexity=1, smooth=True, detectionCon=0.5, trackCon=0.5):
         self.mode = mode 
@@ -18,21 +19,21 @@ class poseDetector():
     def findPose(self, img, draw=True):
 
         imgRBG = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # converts the video
-        results = self.pose.process(imgRBG) # adds landmarks 
-        if results.pose_landmarks: # if pose is detected
+        self.results = self.pose.process(imgRBG) # adds landmarks 
+        if self.results.pose_landmarks: # if pose is detected
             if draw: 
-                self.mpDraw.draw_landmarks(img, results.pose_landmarks, self.mpPose.POSE_CONNECTIONS)
+                self.mpDraw.draw_landmarks(img, self.results.pose_landmarks, self.mpPose.POSE_CONNECTIONS)
        
         return img
-
-        ''' 
-            for id, lm in enumerate(results.pose_landmarks.landmark):
-                h, w, c = img.shape 
-                cx, cy = int(lm.x*w), int(lm.y*h) 
-                
-        results.pose_landmarks
-        '''
-
+    
+    def findPosition(self, img, draw=True):
+        lmList = []
+        if self.results.pose_landmarks:
+            for id, lm in enumerate(self.results.pose_landmarks.landmark):
+                 h, w, c = img.shape 
+                 cx, cy = int(lm.x*w), int(lm.y*h)    
+                 lmList.append([id, cx, cy])    
+        return lmList
 
 def main():
     pTime = 0 
@@ -48,6 +49,8 @@ def main():
         cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 255, 255), 2)
         cv2.imshow("img", img)
         cv2.waitKey(1)
+        lmList = detector.findPosition(img)
+        lmList[4] 
 
 
 if __name__ == "__main__":
